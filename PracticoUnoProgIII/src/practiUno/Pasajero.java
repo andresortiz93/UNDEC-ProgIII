@@ -45,6 +45,11 @@ public class Pasajero {
 		public void setTelefono(String telefono) {
 			this.telefono = telefono;
 		}
+		@Override
+		public String toString() {
+			return "Pasajero [idPasajero=" + idPasajero + ", CUIL=" + CUIL + ", apellido=" + apellido + ", nombre="
+					+ nombre + ", telefono=" + telefono + "]";
+		}
 		
 		
 		

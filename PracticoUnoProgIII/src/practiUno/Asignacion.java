@@ -25,9 +25,15 @@ public class Asignacion {
 		}
 		public String getCodigoAsignacion() {
 			return codigoAsignacion;
+			
 		}
 		public void setCodigoAsignacion(String codigoAsignacion) {
 			this.codigoAsignacion = codigoAsignacion;
+		}
+		@Override
+		public String toString() {
+			return "Asignacion [pasajero=" + pasajero + ", asiento=" + asiento + ", codigoAsignacion="
+					+ codigoAsignacion + "]";
 		}
 		
 		

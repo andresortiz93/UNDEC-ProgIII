@@ -29,6 +29,10 @@ public class Ciudad {
 		public void setCodigoPostal(String codigoPostal) {
 			this.codigoPostal = codigoPostal;
 		}
+		@Override
+		public String toString() {
+			return "Ciudad [idCiudad=" + idCiudad + ", nombre=" + nombre + ", codigoPostal=" + codigoPostal + "]";
+		}
 		
 		
 }

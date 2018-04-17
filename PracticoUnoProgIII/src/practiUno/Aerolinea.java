@@ -21,6 +21,10 @@ public class Aerolinea {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	@Override
+	public String toString() {
+		return "Aerolinea [idAerolineas=" + idAerolineas + ", nombre=" + nombre + "]";
+	}
 	
 	
 

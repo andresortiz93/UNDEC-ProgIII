@@ -1,21 +1,22 @@
 package practiUno;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 public class Vuelo {
 	
 	private String codigoVuelo;
 	private Aeropuerto salida;
-	private LocalDate fechaHoraSalida;
+	private LocalDateTime fechaHoraSalida;
 	private Aeropuerto arribo;
-	private LocalDate fechaHoraArribo;
+	private LocalDateTime fechaHoraArribo;
 	private Aerolinea aerolinea;
 	private LinkedList<Piloto> pilotos;
 	private Avion avion;
 	private LinkedList<Asignacion> pasajeros;
-	public Vuelo(String codigoVuelo, Aeropuerto salida, LocalDate fechaHoraSalida, Aeropuerto arribo,
-			LocalDate fechaHoraArribo, Aerolinea aerolinea, LinkedList<Piloto> pilotos, Avion avion,
+	public Vuelo(String codigoVuelo, Aeropuerto salida, LocalDateTime fechaHoraSalida, Aeropuerto arribo,
+			LocalDateTime fechaHoraArribo, Aerolinea aerolinea, LinkedList<Piloto> pilotos, Avion avion,
 			LinkedList<Asignacion> pasajeros) {
 		super();
 		this.codigoVuelo = codigoVuelo;
@@ -40,10 +41,10 @@ public class Vuelo {
 	public void setSalida(Aeropuerto salida) {
 		this.salida = salida;
 	}
-	public LocalDate getFechaHoraSalida() {
+	public LocalDateTime getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
-	public void setFechaHoraSalida(LocalDate fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 	public Aeropuerto getArribo() {
@@ -52,10 +53,10 @@ public class Vuelo {
 	public void setArribo(Aeropuerto arribo) {
 		this.arribo = arribo;
 	}
-	public LocalDate getFechaHoraArribo() {
+	public LocalDateTime getFechaHoraArribo() {
 		return fechaHoraArribo;
 	}
-	public void setFechaHoraArribo(LocalDate fechaHoraArribo) {
+	public void setFechaHoraArribo(LocalDateTime fechaHoraArribo) {
 		this.fechaHoraArribo = fechaHoraArribo;
 	}
 	public Aerolinea getAerolinea() {
@@ -81,9 +82,35 @@ public class Vuelo {
 	}
 	public void setPasajeros(LinkedList<Asignacion> pasajeros) {
 		this.pasajeros = pasajeros;
+		
+	}
+	@Override
+	public String toString() {
+		return "Vuelo [codigoVuelo=" + codigoVuelo + ", salida=" + salida + ", fechaHoraSalida=" + fechaHoraSalida
+				+ ", arribo=" + arribo + ", fechaHoraArribo=" + fechaHoraArribo + ", aerolinea=" + aerolinea
+				+ ", pilotos=" + pilotos + ", avion=" + avion + ", pasajeros=" + pasajeros + "]";
 	}
 	
+	private int convertirHoras() {
+		
+		int x;
+		if(fechaHoraArribo.getHour() > fechaHoraSalida.getHour())
+				x = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) + (fechaHoraArribo.getMinute() - fechaHoraSalida.getMinute());
+		else
+				x = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) - (fechaHoraSalida.getMinute() - fechaHoraArribo.getMinute());
+		return x;
+	}
+	public String mostrarVuelo() {
+		return "Vuelo " + codigoVuelo + " - " + avion.getModelo() + " \n"+
+				fechaHoraSalida.getDayOfWeek() +" "+fechaHoraSalida.getDayOfMonth()+" de "+fechaHoraSalida.getMonth()+" "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+ " " + salida.getCodigo() + "("+salida.verCiudad()+" "+salida.getNombre()+")"
+				+"\n"+fechaHoraArribo.getDayOfWeek() +" " +fechaHoraArribo.getDayOfMonth()+" de "+fechaHoraArribo.getMonth()+ " "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+" " + arribo.getCodigo() + "("+arribo.verCiudad()+" "+arribo.getNombre()+")"+
+				"\nOperado por "+ aerolinea.getNombre()+ " Duración "+this.convertirHoras()/60+"h "+this.convertirHoras()%60+"m";
+		
+	} 
 	
-	
+	public String verAsignaciones() {
+			
+		
+	}
 
 }

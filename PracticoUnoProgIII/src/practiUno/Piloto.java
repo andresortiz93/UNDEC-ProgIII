@@ -48,6 +48,11 @@ public class Piloto {
 		public void setFechaNacimiento(LocalDate fechaNacimiento) {
 			this.fechaNacimiento = fechaNacimiento;
 		}
+		@Override
+		public String toString() {
+			return "Piloto [idPiloto=" + idPiloto + ", apellido=" + apellido + ", nombres=" + nombres + ", documento="
+					+ documento + ", fechaNacimiento=" + fechaNacimiento + "]";
+		}
 		
 		
 		

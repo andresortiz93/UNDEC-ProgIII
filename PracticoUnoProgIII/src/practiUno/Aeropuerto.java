@@ -46,6 +46,20 @@ public class Aeropuerto {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	@Override
+	public String toString() {
+		return "Aeropuerto [idAeropuerto=" + idAeropuerto + ", nombre=" + nombre + ", ciudad=" + ciudad + ", codigo="
+				+ codigo + "]";
+	}
+	
+	public String mostrarAeropuerto() {
+		return nombre + "-" + ciudad.getNombre() + "-" + codigo;
+		
+	}
+	public String verCiudad() {
+		return ciudad.getNombre();
+	}
 	
 	
 	

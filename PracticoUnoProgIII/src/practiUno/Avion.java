@@ -39,8 +39,13 @@ public class Avion {
 		public void setListaAsientos(LinkedList<Asiento> listaAsientos) {
 			this.listaAsientos = listaAsientos;
 		}
+		@Override
+		public String toString() {
+			return "Avion [idAvion=" + idAvion + ", modelo=" + modelo + ", matricula=" + matricula + ", listaAsientos="
+					+ listaAsientos + "]";
+		}
 
 			
-	
+		
 		
 }
