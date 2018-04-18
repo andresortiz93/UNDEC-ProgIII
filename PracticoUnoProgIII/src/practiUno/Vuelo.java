@@ -109,8 +109,25 @@ public class Vuelo {
 	} 
 	
 	public String verAsignaciones() {
+		int señal=0;
+		System.out.println("Detalle de asignacion - Vuelo "+this.getCodigoVuelo());
+		for(Asiento a: avion.getListaAsientos()) {
+			for(Asignacion as: pasajeros) {
+					if(a.getIdAsiento() == as.getAsiento().getIdAsiento()) {
+						señal=1;
+						System.out.println("Asiento " +a.getNumeroAsiento() + " - Ocupado");
+						break;
+						
+					}
+					else señal=0;
+					}
+			if(señal == 0) 
+				System.out.println("Asiento "+a.getNumeroAsiento()+" - Libre");
+				
 			
+		}
 		
+		return "";
 	}
 
 }

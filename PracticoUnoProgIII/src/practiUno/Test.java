@@ -120,6 +120,8 @@ public class Test {
 			 	System.out.println(a.mostrarAeropuerto());
 		 //IMPRIMIR VUELO
 		 System.out.println(vuelo1.mostrarVuelo());
+		 
+		 System.out.println(vuelo1.verAsignaciones());
 	}
 
 }
