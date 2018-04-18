@@ -3,6 +3,7 @@ package practiUno;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Test {
@@ -140,7 +141,8 @@ public class Test {
 			 if(fecha.getYears() > 40)
 				 pilotosMayores.add(p);
 		 }
-		 System.out.println("PILOTOS MAYORES DE 40");
+		 System.out.println("\nPILOTOS MAYORES DE 40");
+		 Collections.sort(pilotosMayores, new compararPilotoEdad());
 		 for(Piloto pi: pilotosMayores) {
 			 fecha1 = Period.between(pi.getFechaNacimiento(),LocalDate.now() );
 			 System.out.println(pi.getApellido()+", "+pi.getNombres()+"- "+fecha1.getYears()+" años.");
@@ -148,15 +150,19 @@ public class Test {
 		 }
 		 
 		 //RANKING AVIONES
-		 System.out.println("HORAS DE VUELO DE AVIONES");
+		 System.out.println("\nHORAS DE VUELO DE AVIONES");
 		 LinkedList<Avion> horasVuelo = new LinkedList();
 		 horasVuelo.add(avion1);horasVuelo.add(avion2);horasVuelo.add(avion3);horasVuelo.add(avion4);
+		 Collections.sort(horasVuelo, new comparaHoraVuelo());
 		 for(Avion av : horasVuelo) 
 			 	System.out.println(av.getModelo()+"("+av.getMatricula()+") - "+av.getHsVuelo()+"hs de vuelo");
+		 
 			 
+		 System.out.println("\nPILOTOS POR HORAS DE VUELO");
+		 Collections.sort(pilotos, new comparaPilotohoraVuelo());
 		 for(Piloto pil: pilotos) {
 			 fecha1 = Period.between(pil.getFechaNacimiento(),LocalDate.now() );
-			 System.out.println(pil.getApellido()+", "+pil.getNombres()+"- "+fecha1.getYears()+" años."+ pil.getHsVuelo()+" hs de vuelo");
+			 System.out.println(pil.getApellido()+", "+pil.getNombres()+"- "+fecha1.getYears()+" años. "+ pil.getHsVuelo()+" hs de vuelo");
 			 
 		 }
 			 
