@@ -2,6 +2,7 @@ package practiUno;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.LinkedList;
 
 public class Test {
@@ -114,14 +115,52 @@ public class Test {
 		 //Vuelo vuelo2 = new Vuelo("CF433", aeropuerto3, LocalDateTime.of(2018, 11, 24, 22, 10),)
 		 
 		//IMPRIMIR AEROPUERTO
+		 System.out.println("MOSTRAR AEROPUERTOS");
 		 LinkedList<Aeropuerto> aeropuertos = new LinkedList();
 		 aeropuertos.add(aeropuerto1);aeropuertos.add(aeropuerto2);aeropuertos.add(aeropuerto3);aeropuertos.add(aeropuerto4); 
 		 for(Aeropuerto a : aeropuertos)
 			 	System.out.println(a.mostrarAeropuerto());
 		 //IMPRIMIR VUELO
+		 System.out.println("MOSTRAR DETALLE DE VUELO");
 		 System.out.println(vuelo1.mostrarVuelo());
-		 
+		 System.out.println("MOSTRAR DETALLE ASIGNACIONES");
 		 System.out.println(vuelo1.verAsignaciones());
+		 
+		 //System.out.println(LocalDate.now().getYear() - piloto1.getFechaNacimiento().getYear());
+		
+		 //EDAD DE LOS PILOTOS
+		 LinkedList<Piloto> pilotos = new LinkedList();
+		 LinkedList<Piloto> pilotosMayores = new LinkedList();
+		 Period fecha, fecha1, fecha2;
+		 
+		 pilotos.add(piloto1);pilotos.add(piloto2);pilotos.add(piloto3);pilotos.add(piloto4);
+		 for(Piloto p: pilotos) {
+			 fecha= Period.between(p.getFechaNacimiento(),LocalDate.now() );
+			// System.out.println(fecha.getYears());
+			 if(fecha.getYears() > 40)
+				 pilotosMayores.add(p);
+		 }
+		 System.out.println("PILOTOS MAYORES DE 40");
+		 for(Piloto pi: pilotosMayores) {
+			 fecha1 = Period.between(pi.getFechaNacimiento(),LocalDate.now() );
+			 System.out.println(pi.getApellido()+", "+pi.getNombres()+"- "+fecha1.getYears()+" años.");
+			 
+		 }
+		 
+		 //RANKING AVIONES
+		 System.out.println("HORAS DE VUELO DE AVIONES");
+		 LinkedList<Avion> horasVuelo = new LinkedList();
+		 horasVuelo.add(avion1);horasVuelo.add(avion2);horasVuelo.add(avion3);horasVuelo.add(avion4);
+		 for(Avion av : horasVuelo) 
+			 	System.out.println(av.getModelo()+"("+av.getMatricula()+") - "+av.getHsVuelo()+"hs de vuelo");
+			 
+		 for(Piloto pil: pilotos) {
+			 fecha1 = Period.between(pil.getFechaNacimiento(),LocalDate.now() );
+			 System.out.println(pil.getApellido()+", "+pil.getNombres()+"- "+fecha1.getYears()+" años."+ pil.getHsVuelo()+" hs de vuelo");
+			 
+		 }
+			 
+		 
 	}
 
 }

@@ -8,6 +8,7 @@ public class Avion {
 		private String modelo;
 		private String matricula;
 		private LinkedList<Asiento> listaAsientos;
+		private int hsVuelo=0;
 		public Avion(int idAvion, String modelo, String matricula, LinkedList<Asiento> listaAsientos) {
 			super();
 			this.idAvion = idAvion;
@@ -38,6 +39,16 @@ public class Avion {
 		}
 		public void setListaAsientos(LinkedList<Asiento> listaAsientos) {
 			this.listaAsientos = listaAsientos;
+		}
+		public void acumuladorHoras(int x) {
+			this.hsVuelo+=x;
+			
+		}
+		public int getHsVuelo() {
+			return hsVuelo/60;
+		}
+		public void setHsVuelo(int hsVuelo) {
+			this.hsVuelo = hsVuelo;
 		}
 		@Override
 		public String toString() {

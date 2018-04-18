@@ -3,7 +3,8 @@ package practiUno;
 import java.time.LocalDate;
 
 public class Piloto {
-
+		
+		private int hsVuelo=0;
 		private int idPiloto;
 		private String apellido;
 		private String nombres;
@@ -47,6 +48,16 @@ public class Piloto {
 		}
 		public void setFechaNacimiento(LocalDate fechaNacimiento) {
 			this.fechaNacimiento = fechaNacimiento;
+		}
+		
+		public int getHsVuelo() {
+			return hsVuelo/60;
+		}
+		public void setHsVuelo(int hsVuelo) {
+			this.hsVuelo = hsVuelo;
+		}
+		void acumulaHoras(int x) {
+			this.hsVuelo+=x;
 		}
 		@Override
 		public String toString() {

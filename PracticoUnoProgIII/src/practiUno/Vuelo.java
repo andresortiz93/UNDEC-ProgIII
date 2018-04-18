@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 public class Vuelo {
 	
+	private int duracion=0;
 	private String codigoVuelo;
 	private Aeropuerto salida;
 	private LocalDateTime fechaHoraSalida;
@@ -19,6 +20,7 @@ public class Vuelo {
 			LocalDateTime fechaHoraArribo, Aerolinea aerolinea, LinkedList<Piloto> pilotos, Avion avion,
 			LinkedList<Asignacion> pasajeros) {
 		super();
+		
 		this.codigoVuelo = codigoVuelo;
 		this.salida = salida;
 		this.fechaHoraSalida = fechaHoraSalida;
@@ -29,6 +31,7 @@ public class Vuelo {
 		this.avion = avion;
 		this.pasajeros = pasajeros;
 	}
+	
 	public String getCodigoVuelo() {
 		return codigoVuelo;
 	}
@@ -91,20 +94,29 @@ public class Vuelo {
 				+ ", pilotos=" + pilotos + ", avion=" + avion + ", pasajeros=" + pasajeros + "]";
 	}
 	
-	private int convertirHoras() {
+	private void convertirHoras() {
 		
-		int x;
-		if(fechaHoraArribo.getHour() > fechaHoraSalida.getHour())
-				x = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) + (fechaHoraArribo.getMinute() - fechaHoraSalida.getMinute());
-		else
-				x = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) - (fechaHoraSalida.getMinute() - fechaHoraArribo.getMinute());
-		return x;
+	
+		if(fechaHoraArribo.getHour() > fechaHoraSalida.getHour()) {
+				duracion = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) + (fechaHoraArribo.getMinute() - fechaHoraSalida.getMinute());
+				avion.acumuladorHoras(duracion);
+				}
+		
+		else {
+				duracion = ((fechaHoraArribo.getHour() - fechaHoraSalida.getHour())*60) - (fechaHoraSalida.getMinute() - fechaHoraArribo.getMinute());
+				avion.acumuladorHoras(duracion);
+				}
+		//System.out.println(x);
+		//return x;
+		for(Piloto pil : pilotos)
+			pil.acumulaHoras(duracion);
 	}
 	public String mostrarVuelo() {
+		convertirHoras();
 		return "Vuelo " + codigoVuelo + " - " + avion.getModelo() + " \n"+
 				fechaHoraSalida.getDayOfWeek() +" "+fechaHoraSalida.getDayOfMonth()+" de "+fechaHoraSalida.getMonth()+" "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+ " " + salida.getCodigo() + "("+salida.verCiudad()+" "+salida.getNombre()+")"
 				+"\n"+fechaHoraArribo.getDayOfWeek() +" " +fechaHoraArribo.getDayOfMonth()+" de "+fechaHoraArribo.getMonth()+ " "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+" " + arribo.getCodigo() + "("+arribo.verCiudad()+" "+arribo.getNombre()+")"+
-				"\nOperado por "+ aerolinea.getNombre()+ " Duración "+this.convertirHoras()/60+"h "+this.convertirHoras()%60+"m";
+				"\nOperado por "+ aerolinea.getNombre()+ " Duración "+duracion/60+"h "+duracion%60+"m";
 		
 	} 
 	
