@@ -9,14 +9,16 @@ import java.util.LinkedList;
 public class Test {
 
 	public static void main(String[] args) {
-		 Ciudad ciudad1 = new Ciudad(1,"La Rioja","5360");
-		 Ciudad ciudad2 = new Ciudad(2,"Buenos Aires","1000");
-		 Ciudad ciudad3 = new Ciudad(3,"Mendoza","5500");
-		 Ciudad ciudad4 = new Ciudad(4,"Tucman","4000");
-		 Aeropuerto aeropuerto1 = new Aeropuerto(1,"Aeropuerto Capitán Vicente Almandos Almonacid", ciudad1,"IRJ");
-		 Aeropuerto aeropuerto2 = new Aeropuerto(2,"Aeropuerto Buenos Aires Jorge Nwebery", ciudad2,"AEP");
-		 Aeropuerto aeropuerto3 = new Aeropuerto(3,"Aeropuerto El Plumerillo", ciudad3,"MDZ");
-		 Aeropuerto aeropuerto4 = new Aeropuerto(4,"Aeropuerto Benjamín Matienzo", ciudad4,"TUC");
+		 Ciudad LaRioja = new Ciudad(1,"La Rioja","5360");
+		 Ciudad BuenosAires = new Ciudad(2,"Buenos Aires","1000");
+		 Ciudad Mendoza = new Ciudad(3,"Mendoza","5500");
+		 Ciudad Tucuman = new Ciudad(4,"Tucuman","4000");
+		 
+		 
+		 Aeropuerto aeropuerto1 = new Aeropuerto(1,"Aeropuerto Capitán Vicente Almandos Almonacid", LaRioja,"IRJ");
+		 Aeropuerto aeropuerto2 = new Aeropuerto(2,"Aeropuerto Buenos Aires Jorge Nwebery", BuenosAires,"AEP");
+		 Aeropuerto aeropuerto3 = new Aeropuerto(3,"Aeropuerto El Plumerillo", Mendoza,"MDZ");
+		 Aeropuerto aeropuerto4 = new Aeropuerto(4,"Aeropuerto Benjamín Matienzo", Tucuman,"TUC");
 		 Pasajero pasajero1 = new Pasajero(1,"20123456784","Ramírez", "Ramiro Ramón","12345678");
 		 Pasajero pasajero2 = new Pasajero(2,"20102030404","Fernandez", "Fernando Fermín","10203040");
 		 Pasajero pasajero3 = new Pasajero(3,"20987654324","Martinez", "Martín Marcos","98765432");
@@ -106,6 +108,14 @@ public class Test {
 		 Avion avion2 = new Avion(2,"Airbus A330-233","LV-FNI",lista2);
 		 Avion avion3 = new Avion(3,"Boein 737-8MB","LV-FYK",lista3);
 		 Avion avion4 = new Avion(4,"Embraer ERJ-190-100AR","LV-CIH",lista4);
+		 GestorAviones.crearAvion(avion1);
+		 GestorAviones.crearAvion(avion2);
+		 GestorAviones.crearAvion(avion3);
+		 GestorAviones.crearAvion(avion4);
+		 System.out.println(avion1.toString());
+		 System.out.println("modificacion de avion");
+		 GestorAviones.modificarAvion(avion1, avion2);
+		 System.out.println(avion1.toString());
 		 //Pilotos para vuelo1
 		 LinkedList listaPiloto1 = new LinkedList();
 		 listaPiloto1.add(piloto1);listaPiloto1.add(piloto2);
@@ -122,9 +132,9 @@ public class Test {
 		 for(Aeropuerto a : aeropuertos)
 			 	System.out.println(a.mostrarAeropuerto());
 		 //IMPRIMIR VUELO
-		 System.out.println("MOSTRAR DETALLE DE VUELO");
+		 System.out.println("\nMOSTRAR DETALLE DE VUELO");
 		 System.out.println(vuelo1.mostrarVuelo());
-		 System.out.println("MOSTRAR DETALLE ASIGNACIONES");
+		 System.out.println("\nMOSTRAR DETALLE ASIGNACIONES");
 		 System.out.println(vuelo1.verAsignaciones());
 		 
 		 //System.out.println(LocalDate.now().getYear() - piloto1.getFechaNacimiento().getYear());
