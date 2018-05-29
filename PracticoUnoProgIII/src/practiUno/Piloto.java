@@ -1,6 +1,7 @@
 package practiUno;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Piloto {
 		
@@ -63,6 +64,14 @@ public class Piloto {
 		public String toString() {
 			return "Piloto [idPiloto=" + idPiloto + ", apellido=" + apellido + ", nombres=" + nombres + ", documento="
 					+ documento + ", fechaNacimiento=" + fechaNacimiento + "]";
+		}
+		public String getSurnameAndName() {
+			return (apellido+", "+ nombres);
+		}
+		public int getAge(LocalDate of) {
+			Period años;
+			años = Period.between(fechaNacimiento,of );
+			return años.getYears();
 		}
 		
 		
