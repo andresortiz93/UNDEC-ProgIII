@@ -53,10 +53,10 @@ public class Aeropuerto {
 				+ codigo + "]";
 	}
 	
-	//public String mostrarAeropuerto() {
-		//return nombre + "-" + ciudad.getNombre() + "-" + codigo;
+	public String mostrarAeropuerto() {
+		return nombre + "-" + ciudad.getNombre() + "-" + codigo;
 		
-	//}
+	}
 	public String verCiudad() {
 		return ciudad.getNombre();
 	}

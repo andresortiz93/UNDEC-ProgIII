@@ -3,13 +3,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+import practiUno.Avion;
+import practiUno.GestorAviones;
+
 class GestorAvionTest {
 
 	@Test
 	void crearAvion_creacionCorrecta() {
 
 		// Arrange
-		GestorAvion elGestor = new GestorAvion();
+		GestorAviones elGestor = new GestorAviones();
 		int avionesEnColeccion = elGestor.coleccionAviones.size();
 		Avion unAvion = new Avion(1, "Airbus A340-313X", "LV-FPV", null);
 
@@ -26,7 +29,7 @@ class GestorAvionTest {
 	void crearAvion_yaExisteAvionPorID() {
 
 		// Arrange
-		GestorAvion elGestor = new GestorAvion();
+		GestorAviones elGestor = new GestorAviones();
 		elGestor.coleccionAviones.add(new Avion(1, "Airbus A340-313X", "LV-FPV", null));
 		int avionesEnColeccion = elGestor.coleccionAviones.size();
 		Avion unAvion = new Avion(1, "Boeing 737-8MB", "LV-FYK", null);
@@ -45,7 +48,7 @@ class GestorAvionTest {
 	void crearAvion_yaExisteAvionPorMatricula() {
 
 		// Arrange
-		GestorAvion elGestor = new GestorAvion();
+		GestorAviones elGestor = new GestorAviones();
 		elGestor.coleccionAviones.add(new Avion(1, "Airbus A340-313X", "LV-FPV", null));
 		int avionesEnColeccion = elGestor.coleccionAviones.size();
 		Avion unAvion = new Avion(2, "Boeing 737-8MB", "LV-FPV", null);

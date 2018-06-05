@@ -2,10 +2,14 @@ package practiUno;
 
 //import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.TextStyle;
 import java.util.LinkedList;
+
+import java.util.Locale;
 
 public class Vuelo {
 	
+	private Locale S = new Locale("es","ES");
 	private int duracion=0;
 	private String codigoVuelo;
 	private Aeropuerto salida;
@@ -31,6 +35,7 @@ public class Vuelo {
 		this.avion = avion;
 		this.pasajeros = pasajeros;
 	}
+	
 	
 	public String getCodigoVuelo() {
 		return codigoVuelo;
@@ -108,8 +113,8 @@ public class Vuelo {
 				}
 		//System.out.println(x);
 		//return x;
-		for(Piloto pil : pilotos)
-			pil.acumulaHoras(duracion);
+		//for(Piloto pil : pilotos)
+			//pil.acumulaHoras(duracion);
 	}
 	public String mostrarVuelo() {
 		convertirHoras();
@@ -140,6 +145,25 @@ public class Vuelo {
 		}
 		
 		return "";
+	}
+
+	public String getDetails() {
+		convertirHoras();
+		return "Vuelo " + codigoVuelo + " - " + avion.getModelo() + "\r\n"+
+		Character.toUpperCase(fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).charAt(0))+
+		fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).substring(1, fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).length()).toLowerCase()
+		+" "+fechaHoraSalida.getDayOfMonth()+" de "+
+		fechaHoraSalida.getMonth().getDisplayName(TextStyle.FULL, S)+
+		
+		" "+fechaHoraSalida.getHour()+":"+fechaHoraSalida.getMinute()+ " " + salida.getCodigo() +
+		" ("+salida.verCiudad()+" - "+salida.getNombre()+")"
+				+"\r\n"+Character.toUpperCase(fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).charAt(0))
+				+fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).substring(1, fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).length()).toLowerCase() +
+				" " +fechaHoraArribo.getDayOfMonth()+" de "+fechaHoraArribo.getMonth().getDisplayName(TextStyle.FULL, S)+
+				" "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+" " + arribo.getCodigo() +
+				" ("+arribo.verCiudad()+" - "+arribo.getNombre()+")"+
+				"\r\nOperado por "+ aerolinea.getNombre()+ ". Duración "+duracion/60+"h "+duracion%60+"m";
+		
 	}
 
 }

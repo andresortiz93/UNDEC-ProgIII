@@ -4,52 +4,60 @@ import java.util.LinkedList;
 
 public class GestorAviones {
 	private static int contadorParaAvion=0;
-	private static LinkedList<Avion> listaDeAviones = new LinkedList<Avion>();
-	public static void crearAvion(Avion nuevoAvion) {
+	public static LinkedList<Avion> coleccionAviones = new LinkedList<Avion>();
+	
+	public GestorAviones() {
+		
+	}
+	public static boolean crearAvion(Avion nuevoAvion) {
 		int banderaDeIDAvion =0;
+		int banderaDeMatriculaAvion = 0;
 		if(contadorParaAvion == 0) {
-			listaDeAviones.add(nuevoAvion);
-			System.out.println("Avion Creado");
+			coleccionAviones.add(nuevoAvion);			
 			contadorParaAvion++;
+			return true;
 		}
-		for(Avion avionesRegistrados : listaDeAviones) 
-			if(avionesRegistrados.getIdAvion() == nuevoAvion.getIdAvion()) 
-					banderaDeIDAvion = 1;
+		for(Avion avionesRegistrados : coleccionAviones) {
+			if(avionesRegistrados.getIdAvion() == nuevoAvion.getIdAvion()) {				
+				banderaDeIDAvion = 1;				
+			}
+			if(avionesRegistrados.getMatricula() == nuevoAvion.getMatricula()) {				
+				banderaDeMatriculaAvion= 1;				
+			}
+		} 	
 		
-		
-			if(banderaDeIDAvion == 1) 
-				System.out.println("Error al crear avion, el ID del avion ya existe.");
-			
+		if(banderaDeIDAvion == 1) {
+			return false;
+			}
+		if(banderaDeMatriculaAvion == 1) {
+			return false;
+			}
+		else {
+			if(nuevoAvion.getListaAsientos().isEmpty()) {
+				return false;
+			}
 			else {
-				if(nuevoAvion.getListaAsientos().isEmpty()) {
-				System.out.println("Error al crear avion, el avion no contiene asientos.");
-				}
-				else {
-					listaDeAviones.add(nuevoAvion);
-					System.out.println("Avion Creado");
+				coleccionAviones.add(nuevoAvion);
+				return true;
+					
 					}
 					
 			}
 		}
 	
 	public static void modificarAvion(Avion datosAvionViejo, Avion datosAvionNuevo) {
-		int banderaDeRegistroAvion = 0;
-		for(Avion aviones : listaDeAviones) {
+		//int banderaDeRegistroAvion = 0;
+		for(Avion aviones : coleccionAviones) {
 			if(aviones.getIdAvion() == datosAvionViejo.getIdAvion()) {
-				banderaDeRegistroAvion = 1;
+				//banderaDeRegistroAvion = 1;
 				aviones.setMatricula(datosAvionNuevo.getMatricula());
 				aviones.setModelo(datosAvionNuevo.getModelo());
 				aviones.setListaAsientos(datosAvionNuevo.getListaAsientos());
-				datosAvionViejo.setMatricula(datosAvionNuevo.getMatricula());			
-				datosAvionViejo.setModelo(datosAvionNuevo.getModelo());
-				datosAvionViejo.setListaAsientos(datosAvionNuevo.getListaAsientos());
+				//datosAvionViejo.setMatricula(datosAvionNuevo.getMatricula());			
+				//datosAvionViejo.setModelo(datosAvionNuevo.getModelo());
+				//datosAvionViejo.setListaAsientos(datosAvionNuevo.getListaAsientos());
 			}
 		}
-		if(banderaDeRegistroAvion == 1)
-			System.out.println("Avion Modificado");
-		else
-			System.out.println("Avion No modificado");
-			
 		
 		
 	}

@@ -3,6 +3,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
+import practiUno.Aerolinea;
+import practiUno.Aeropuerto;
+import practiUno.Avion;
+import practiUno.Ciudad;
+import practiUno.Vuelo;
+
 class VueloTest {
 
 	@Test
@@ -45,8 +51,8 @@ class VueloTest {
 
 		Ciudad laRioja = new Ciudad(1, "La Rioja", "5300");
 		Ciudad buenosAires = new Ciudad(2, "Buenos Aires", "1000");
-		Aeropuerto origin = new Aeropuerto(1, "Aeropuerto Capitán Vicente Almandos Almonacid", "IRJ", laRioja);
-		Aeropuerto destination = new Aeropuerto(2, "Aeropuerto Buenos Aires Jorge Newbery", "AEP", buenosAires);
+		Aeropuerto origin = new Aeropuerto(1, "Aeropuerto Capitán Vicente Almandos Almonacid",laRioja, "IRJ" );
+		Aeropuerto destination = new Aeropuerto(2, "Aeropuerto Buenos Aires Jorge Newbery", buenosAires,"AEP" );
 		Aerolinea austral = new Aerolinea(1, "Austral");
 
 		Avion embraer = new Avion(4, "Embraer ERJ-190-100AR", "LV-CIH", null);
