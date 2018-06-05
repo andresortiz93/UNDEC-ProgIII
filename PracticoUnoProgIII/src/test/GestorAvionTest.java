@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import practiUno.Avion;
+import practiUno.GestorAvion;
 import practiUno.Vuelo;
 
 class GestorAvionTest {
@@ -72,9 +73,9 @@ class GestorAvionTest {
 
 	@Test
 	void horasVueloAvion_listaVuelos_devuelveSuma() {
-
+		Avion avion1 = new Avion(1, "Airbus A340-313X", "LV-FPV", null);
 		GestorAvion elGestor = new GestorAvion(new LinkedList<Avion>());
-		int horasVuelo = elGestor.horasVueloAvion(crearVuelos());
+		int horasVuelo = elGestor.horasVueloAvion(crearVuelos(),avion1);
 		assertEquals(15, horasVuelo);
 
 	}

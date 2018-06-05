@@ -1,13 +1,17 @@
 package practiUno;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
-public class GestorAviones {
+public class GestorAvion {
 	private static int contadorParaAvion=0;
 	public static LinkedList<Avion> coleccionAviones = new LinkedList<Avion>();
 	
-	public GestorAviones() {
+	public GestorAvion() {
 		
+	}
+	public GestorAvion(LinkedList<Avion> linkedList) {
+		coleccionAviones.addAll(linkedList);
 	}
 	public static boolean crearAvion(Avion nuevoAvion) {
 		int banderaDeIDAvion =0;
@@ -53,14 +57,36 @@ public class GestorAviones {
 				aviones.setMatricula(datosAvionNuevo.getMatricula());
 				aviones.setModelo(datosAvionNuevo.getModelo());
 				aviones.setListaAsientos(datosAvionNuevo.getListaAsientos());
-				//datosAvionViejo.setMatricula(datosAvionNuevo.getMatricula());			
-				//datosAvionViejo.setModelo(datosAvionNuevo.getModelo());
-				//datosAvionViejo.setListaAsientos(datosAvionNuevo.getListaAsientos());
+				
 			}
 		}
 		
 		
 	}
+	public LinkedList<Avion> getColeccionAviones() {
+		
+		return coleccionAviones;
+	}
+	public int horasVueloAvion(Collection<Vuelo> crearVuelos, Avion avion1) {
+		int duracion = 0;
+		for(Vuelo vuelos : crearVuelos) {
+				if(vuelos.getAvion().equals(avion1)) {
+					if(vuelos.getFechaHoraArribo().getHour() > vuelos.getFechaHoraSalida().getHour()) {
+						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) + 
+								(vuelos.getFechaHoraArribo().getMinute() - vuelos.getFechaHoraSalida().getMinute());
+						//avion.acumuladorHoras(duracion);
+						}
+				
+				else {
+						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) - 
+								(vuelos.getFechaHoraSalida().getMinute() - vuelos.getFechaHoraSalida().getMinute());
+						//avion.acumuladorHoras(duracion);
+						}
+				}
+					}
+		return duracion/60;
+	}
+	
 
 	
 }

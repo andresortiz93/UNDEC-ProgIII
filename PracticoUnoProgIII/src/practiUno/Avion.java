@@ -4,6 +4,26 @@ import java.util.LinkedList;
 
 public class Avion {
 
+		@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idAvion;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Avion other = (Avion) obj;
+		if (idAvion != other.idAvion)
+			return false;
+		return true;
+	}
 		private int idAvion;
 		private String modelo;
 		private String matricula;

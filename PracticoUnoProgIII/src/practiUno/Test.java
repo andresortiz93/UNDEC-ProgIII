@@ -108,13 +108,13 @@ public class Test {
 		 Avion avion2 = new Avion(2,"Airbus A330-233","LV-FNI",lista2);
 		 Avion avion3 = new Avion(3,"Boein 737-8MB","LV-FYK",lista3);
 		 Avion avion4 = new Avion(4,"Embraer ERJ-190-100AR","LV-CIH",lista4);
-		 GestorAviones.crearAvion(avion1);
-		 GestorAviones.crearAvion(avion2);
-		 GestorAviones.crearAvion(avion3);
-		 GestorAviones.crearAvion(avion4);
+		 GestorAvion.crearAvion(avion1);
+		 GestorAvion.crearAvion(avion2);
+		 GestorAvion.crearAvion(avion3);
+		 GestorAvion.crearAvion(avion4);
 		 System.out.println(avion1.toString());
 		 System.out.println("modificacion de avion");
-		 GestorAviones.modificarAvion(avion1, avion2);
+		 GestorAvion.modificarAvion(avion1, avion2);
 		 System.out.println(avion1.toString());
 		 //Pilotos para vuelo1
 		 LinkedList listaPiloto1 = new LinkedList();
