@@ -149,18 +149,13 @@ public class Vuelo implements horaEspaniol{
 
 	public String getDetails() {
 		convertirHoras();
+		String salidaVuelo, arriboVuelo;
+		salidaVuelo = fechaHoraSpanish(fechaHoraSalida);
+		arriboVuelo = fechaHoraSpanish(fechaHoraArribo);
 		return "Vuelo " + codigoVuelo + " - " + avion.getModelo() + "\r\n"+
-		Character.toUpperCase(fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).charAt(0))+
-		fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).substring(1, fechaHoraSalida.getDayOfWeek().getDisplayName(TextStyle.FULL, S).length()).toLowerCase()
-		+" "+fechaHoraSalida.getDayOfMonth()+" de "+
-		fechaHoraSalida.getMonth().getDisplayName(TextStyle.FULL, S)+
-		
-		" "+fechaHoraSalida.getHour()+":"+fechaHoraSalida.getMinute()+ " " + salida.getCodigo() +
-		" ("+salida.verCiudad()+" - "+salida.getNombre()+")"
-				+"\r\n"+Character.toUpperCase(fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).charAt(0))
-				+fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).substring(1, fechaHoraArribo.getDayOfWeek().getDisplayName(TextStyle.FULL, S).length()).toLowerCase() +
-				" " +fechaHoraArribo.getDayOfMonth()+" de "+fechaHoraArribo.getMonth().getDisplayName(TextStyle.FULL, S)+
-				" "+fechaHoraArribo.getHour()+":"+fechaHoraArribo.getMinute()+" " + arribo.getCodigo() +
+				salidaVuelo+ " " + salida.getCodigo() +
+				" ("+salida.verCiudad()+" - "+salida.getNombre()+")"
+				+"\r\n"+arriboVuelo+" " + arribo.getCodigo() +
 				" ("+arribo.verCiudad()+" - "+arribo.getNombre()+")"+
 				"\r\nOperado por "+ aerolinea.getNombre()+ ". Duración "+duracion/60+"h "+duracion%60+"m";
 		
