@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 import java.util.Locale;
 
-public class Vuelo {
+public class Vuelo implements horaEspaniol{
 	
 	private Locale S = new Locale("es","ES");
 	private int duracion=0;
@@ -164,6 +164,16 @@ public class Vuelo {
 				" ("+arribo.verCiudad()+" - "+arribo.getNombre()+")"+
 				"\r\nOperado por "+ aerolinea.getNombre()+ ". Duración "+duracion/60+"h "+duracion%60+"m";
 		
+	}
+
+
+	@Override
+	public String fechaHoraSpanish(LocalDateTime date) {
+		
+		return Character.toUpperCase(date.getDayOfWeek().getDisplayName(TextStyle.FULL, S).charAt(0))+
+				date.getDayOfWeek().getDisplayName(TextStyle.FULL, S).substring(1, date.getDayOfWeek().getDisplayName(TextStyle.FULL, S).length()).toLowerCase()
+				+" "+date.getDayOfMonth()+" de "+
+				date.getMonth().getDisplayName(TextStyle.FULL, S)+" "+date.getHour()+":"+date.getMinute() ;
 	}
 
 }

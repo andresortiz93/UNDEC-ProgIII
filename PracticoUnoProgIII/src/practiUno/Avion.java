@@ -1,5 +1,6 @@
 package practiUno;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 public class Avion {

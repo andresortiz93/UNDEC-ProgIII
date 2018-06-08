@@ -74,18 +74,19 @@ public class GestorAvion {
 					if(vuelos.getFechaHoraArribo().getHour() > vuelos.getFechaHoraSalida().getHour()) {
 						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) + 
 								(vuelos.getFechaHoraArribo().getMinute() - vuelos.getFechaHoraSalida().getMinute());
-						//avion.acumuladorHoras(duracion);
+						
 						}
 				
 				else {
 						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) - 
 								(vuelos.getFechaHoraSalida().getMinute() - vuelos.getFechaHoraSalida().getMinute());
-						//avion.acumuladorHoras(duracion);
+						
 						}
 				}
 					}
 		return duracion/60;
 	}
+	
 	
 
 	
