@@ -13,81 +13,79 @@ public class GestorAvion {
 	public GestorAvion(LinkedList<Avion> linkedList) {
 		coleccionAviones.addAll(linkedList);
 	}
+	
 	public static boolean crearAvion(Avion nuevoAvion) {
-		int banderaDeIDAvion =0;
-		int banderaDeMatriculaAvion = 0;
+		boolean existeIDavion = false, existeMatriculaAvion = false;
 		if(contadorParaAvion == 0) {
 			coleccionAviones.add(nuevoAvion);			
 			contadorParaAvion++;
 			return true;
 		}
-		for(Avion avionesRegistrados : coleccionAviones) {
-			if(avionesRegistrados.getIdAvion() == nuevoAvion.getIdAvion()) {				
-				banderaDeIDAvion = 1;				
-			}
-			if(avionesRegistrados.getMatricula() == nuevoAvion.getMatricula()) {				
-				banderaDeMatriculaAvion= 1;				
-			}
-		} 	
-		
-		if(banderaDeIDAvion == 1) {
+		existeIDavion = yaExisteAvionPorID(nuevoAvion);
+		existeMatriculaAvion = yaExisteAvionPorMatricula(nuevoAvion);
+		if(existeIDavion) 
+			return false;		
+		if(existeMatriculaAvion)		
 			return false;
-			}
-		if(banderaDeMatriculaAvion == 1) {
-			return false;
-			}
 		else {
-			if(nuevoAvion.getListaAsientos().isEmpty()) {
-				return false;
-			}
-			else {
-				coleccionAviones.add(nuevoAvion);
-				return true;
-					
-					}
-					
-			}
+			coleccionAviones.add(nuevoAvion);
+			return true;					
+				}			
 		}
+	public static boolean yaExisteAvionPorID(Avion avionAcomparar) {
+		boolean existeIDavion = false;
+		for(Avion avionesRegistrados : coleccionAviones) 
+			if(avionesRegistrados.getIdAvion() == avionAcomparar.getIdAvion()) 				
+				existeIDavion = true;									
+		return existeIDavion;
+	}		
 	
-	public static void modificarAvion(Avion datosAvionViejo, Avion datosAvionNuevo) {
-		//int banderaDeRegistroAvion = 0;
+	public static boolean yaExisteAvionPorMatricula(Avion avionAcomparar) {
+		boolean existeMATRICULAavion = false;
+		for(Avion avionesRegistrados : coleccionAviones) 
+			if(avionesRegistrados.getMatricula() == avionAcomparar.getMatricula()) 				
+				existeMATRICULAavion = true;					
+		return existeMATRICULAavion;
+	}	
+	
+	public static void modificarAvion(Avion datosAvionViejo, Avion datosAvionNuevo) {		
 		for(Avion aviones : coleccionAviones) {
-			if(aviones.getIdAvion() == datosAvionViejo.getIdAvion()) {
-				//banderaDeRegistroAvion = 1;
+			if(aviones.getIdAvion() == datosAvionViejo.getIdAvion()) {				
 				aviones.setMatricula(datosAvionNuevo.getMatricula());
 				aviones.setModelo(datosAvionNuevo.getModelo());
-				aviones.setListaAsientos(datosAvionNuevo.getListaAsientos());
-				
+				aviones.setListaAsientos(datosAvionNuevo.getListaAsientos());				
 			}
-		}
-		
+		}	
 		
 	}
 	public LinkedList<Avion> getColeccionAviones() {
 		
 		return coleccionAviones;
 	}
+	
 	public int horasVueloAvion(Collection<Vuelo> crearVuelos, Avion avion1) {
-		int duracion = 0;
-		for(Vuelo vuelos : crearVuelos) {
-				if(vuelos.getAvion().equals(avion1)) {
-					if(vuelos.getFechaHoraArribo().getHour() > vuelos.getFechaHoraSalida().getHour()) {
-						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) + 
-								(vuelos.getFechaHoraArribo().getMinute() - vuelos.getFechaHoraSalida().getMinute());
-						
-						}
-				
-				else {
-						duracion += ((vuelos.getFechaHoraArribo().getHour() - vuelos.getFechaHoraSalida().getHour())*60) - 
-								(vuelos.getFechaHoraSalida().getMinute() - vuelos.getFechaHoraSalida().getMinute());
-						
-						}
-				}
-					}
-		return duracion/60;
+		int horasVoladasPorAvion = 0;
+		for(Vuelo vuelos : crearVuelos) 
+				if(vuelos.getAvion().equals(avion1)) 
+					horasVoladasPorAvion+=calcularHoras(vuelos);
+		return horasVoladasPorAvion/60;
+	}
+	
+	public int calcularHoras(Vuelo esteVuelo) {
+		int horas=0;
+		if(esteVuelo.getFechaHoraArribo().getHour() > esteVuelo.getFechaHoraSalida().getHour()) 
+			horas = ((esteVuelo.getFechaHoraArribo().getHour() - esteVuelo.getFechaHoraSalida().getHour())*60) + 
+					(esteVuelo.getFechaHoraArribo().getMinute() - esteVuelo.getFechaHoraSalida().getMinute());	
+		else 
+			horas = ((esteVuelo.getFechaHoraArribo().getHour() - esteVuelo.getFechaHoraSalida().getHour())*60) - 
+					(esteVuelo.getFechaHoraSalida().getMinute() - esteVuelo.getFechaHoraSalida().getMinute());
+			
+		return horas;	
+	}
+		
 	}
 	
 	
 
 	
-}
+
