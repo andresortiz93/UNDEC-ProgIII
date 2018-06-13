@@ -3,6 +3,7 @@ package practiUno;
 //import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
+import java.util.Collection;
 import java.util.LinkedList;
 
 import java.util.Locale;
@@ -37,6 +38,15 @@ public class Vuelo implements horaEspaniol{
 	}
 	
 	
+	public Vuelo(String codigoVuelo2, Object salida2, LocalDateTime of, Object arribo2, LocalDateTime of2,
+			Object aerolinea2, Collection<Piloto> tripulacion, Object avion2, Object pasajeros2) {
+		this.codigoVuelo = codigoVuelo2;
+		this.fechaHoraSalida = of;
+		this.fechaHoraArribo = of2;
+		this.pilotos = (LinkedList)tripulacion;
+	}
+
+
 	public String getCodigoVuelo() {
 		return codigoVuelo;
 	}
